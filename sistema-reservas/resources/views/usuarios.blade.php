@@ -33,25 +33,18 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($usuarios as $us)
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td>@mdo</td>
+                          <th scope="row">
+                          {{$us->rut}}
+                          </th>
+                          <td>  {{$us->nombre}}</td>
+                          <td>  {{$us->apellidoPaterno}}</td>
+                          <td>  {{$us->apellidoMaterno}}</td>
+                          <td>  {{$us->tipo}}</td>
                         </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter</td>
-                        </tr>
+
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -79,36 +72,36 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate>
-
+                    <form class="form-horizontal form-label-left" method="POST" action="/usuarios">  
+                      @csrf
                       <span class="section">Informacion Personal</span>
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Rut  <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                          <input id="rut" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="rut" placeholder="Rut sin puntos ni guion" required="required" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="nombre" placeholder="Nombre" required="required" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Apellido Paterno  <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="apellidoPaterno" placeholder="Apellido Paterno" required="required" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Apellido Materno <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="apellidoMaterno" placeholder="Apelldio Materno" required="required" type="text">
                         </div>
                       </div>
 
@@ -116,7 +109,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Tipo <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                        <select class="form-control">
+                        <select class="form-control" name="tipo">
                                 <option> Alumno </option>
                                 <option> Profesor </option>
                                 <option> Administrativo </option>
@@ -125,15 +118,11 @@
                         
                       </div>
 
-                      
-                     
-                      
-                     
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Cancel</button>
-                          <button id="send" type="submit" class="btn btn-success">Submit</button>
+                          <button type="submit" class="btn btn-primary">Cancelar </button>
+                          <button id="send" type="submit" class="btn btn-success">Ingresar</button>
                         </div>
                       </div>
                     </form>

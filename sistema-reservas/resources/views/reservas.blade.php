@@ -32,16 +32,15 @@
                           <th>Fecha Solicitud</th>
                         </tr>
                       </thead>
-
-                      <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                          <td>@fat</td>
-                    </tr>
-
-                      
+                        @foreach($reservas as $re)
+                        <tr>
+                        <th scope="row">{{$re->id }}</th>
+                        <td>{{$re->asignatura }}</td>
+                        <td>{{$re->refPersona}}</td>
+                        <td>{{$re->estado }}</td>
+                        <td>{{$re->fechaSolicitud}}</td>
+                        </tr>
+                        @endforeach
                     </table>
                   </div>
                 </div>
@@ -80,15 +79,19 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach($instanciasReservas as $ir)
                         <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          <th scope="row">{{$ir->refReserva}}</th>
+                          <td>{{$ir->refSala}}</td>
+                          <td>{{$ir->dia }}</td>
+                          <td>{{$ir->bloqueInicial}}</td>
+                          <td>{{$ir->bloqueFinal}}</td>
+                          <td>{{$ir->fechaInicial}}</td>
+                          <td>{{$ir->fechaFinal}}</td>
+
+                          
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -114,14 +117,13 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Rut Estudiante / Profesor </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control">
-                                <option>Choose option</option>
+                                @foreach($usuarios as $us)
+                                <option> {{ $us->rut.' | '.$us->nombre.' '.$us->apellidoPaterno}}</option>
+                                @endforeach
                             </select>
                             </div>
                         </div>
                         
-                        
-                        
-
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Asignatura / Razon </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
@@ -161,7 +163,9 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">  Numero Reserva  </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control">
-                                <option>Choose option</option>
+                              @foreach($reservas as $re)
+                                <option>{{$re->id}}</option>
+                              @endforeach
                             </select>
                             </div>
                         </div>
@@ -169,7 +173,9 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Sala </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control">
-                                <option>Choose option</option>
+                            @foreach($salas as $sa)
+                                <option>{{$sa->nombre}}</option>
+                              @endforeach
                             </select>
                             </div>
                         </div>
@@ -192,7 +198,9 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Bloque Inicio </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control">
-                                <option>Choose option</option>
+                              @foreach($bloques as $bloque)
+                                <option>{{$bloque->id}}</option>
+                              @endforeach
                             </select>
                             </div>
                         </div>
@@ -201,7 +209,9 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Bloque Final</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
                             <select class="form-control">
-                                <option>Choose option</option>
+                               @foreach($bloques as $bloque)
+                                <option>{{$bloque->id}}</option>
+                              @endforeach
                             </select>
                             </div>
                         </div>

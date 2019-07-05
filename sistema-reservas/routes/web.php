@@ -24,10 +24,8 @@ Route::get('/login',function(){
     return view('login');
 });
 
-Route::get('/reservas', function(){
-    return view('reservas');
-});
+Route::get('/reservas', 'ReservasController@index');
 
-Route::get('/usuarios', function(){
-    return view('usuarios');
-});
+Route::get('/usuarios', 'usuariosController@index');
+
+Route::post('/usuarios', 'usuariosController@insert');
