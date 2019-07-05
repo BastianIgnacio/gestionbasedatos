@@ -23,3 +23,11 @@ Route::get('/main',function(){
 Route::get('/login',function(){
     return view('login');
 });
+
+Route::get('/reservas', function(){
+    return view('reservas');
+});
+
+Route::get('/usuarios', function(){
+    return view('usuarios');
+});

@@ -45,9 +45,6 @@
                     <option>Estudiante</option>
                 </select>
                 </div>
-              
-               
-              
                 <div>
                 <a class="btn btn-default submit" href="index.html"> Ingresar </a>
                 </div>
