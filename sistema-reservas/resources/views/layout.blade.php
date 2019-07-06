@@ -64,9 +64,9 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Sistema <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a> Reservas</a></li>
-                      <li><a> Usuarios</a></li>
-                      <li><a> Salas</a></li>
+                      <li><a href="/reservas"> Reservas</a></li>
+                      <li><a href="/usuarios"> Usuarios</a></li>
+                      <li><a href="/salas"> Salas / Insumos </a></li>
                     </ul>
                   </li>
                 </ul>

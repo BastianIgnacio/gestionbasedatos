@@ -30,16 +30,24 @@
                           <th>Persona </th>
                           <th>Estado </th>
                           <th>Fecha Solicitud</th>
+                          <th>Acciones</th>
                         </tr>
                       </thead>
                         @foreach($reservas as $re)
+                        <form method="POST" action="/eliminarReserva">
+                        @csrf
                         <tr>
-                        <th scope="row">{{$re->id }}</th>
-                        <td>{{$re->asignatura }}</td>
-                        <td>{{$re->refPersona}}</td>
-                        <td>{{$re->estado }}</td>
-                        <td>{{$re->fechaSolicitud}}</td>
-                        </tr>
+                          <th scope="row">{{$re->id }}</th>
+                          <input type="hidden" name="reservaEliminar" value="{{$re->id}}">
+                          <td>{{$re->asignatura }}</td>
+                          <td>{{$re->refPersona}}</td>
+                          <td>{{$re->estado }}</td>
+                          <td>{{$re->fechaSolicitud}}</td>
+                          <th>
+                            <button type="submit" class="btn btn-danger btn-xs">x</button>
+                          </th>
+                          </tr>
+                        </form>
                         @endforeach
                     </table>
                   </div>
@@ -76,10 +84,20 @@
                           <th>Bloque Final </th>
                           <th>Fecha Inicial </th>
                           <th>Fecha Final </th>
+                          <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach($instanciasReservas as $ir)
+                        <form method="POST" action="/eliminarInstanciaReserva">
+                        @csrf
+                        <input type="hidden" name="refReserva"    value="{{$ir->refReserva}}">
+                        <input type="hidden" name="refSala"       value="{{$ir->refSala}}">
+                        <input type="hidden" name="dia"           value="{{$ir->dia}}">
+                        <input type="hidden" name="bloqueInicial" value="{{$ir->bloqueInicial}}">
+                        <input type="hidden" name="bloqueFinal"   value="{{$ir->bloqueFinal}}">
+                        <input type="hidden" name="fechaInicial"  value="{{$ir->fechaInicial}}">
+                        <input type="hidden" name="fechaFinal"    value="{{$ir->fechaFinal}}">
                         <tr>
                           <th scope="row">{{$ir->refReserva}}</th>
                           <td>{{$ir->refSala}}</td>
@@ -88,9 +106,11 @@
                           <td>{{$ir->bloqueFinal}}</td>
                           <td>{{$ir->fechaInicial}}</td>
                           <td>{{$ir->fechaFinal}}</td>
-
-                          
+                          <th>
+                            <button type="submit" class="btn btn-danger btn-xs">x</button>
+                          </th>
                         </tr>
+                        </form>
                         @endforeach
                       </tbody>
                     </table>
@@ -112,31 +132,31 @@
                     </div>
                     <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left input_mask">
-                        <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Rut Estudiante / Profesor </label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control">
+                    <form class="form-horizontal form-label-left input_mask" method="POST" action="/reservas">
+                    @csrf
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12"> Rut Estudiante / Profesor </label>
+                          <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select class="form-control" name="reservador">
                                 @foreach($usuarios as $us)
                                 <option> {{ $us->rut.' | '.$us->nombre.' '.$us->apellidoPaterno}}</option>
                                 @endforeach
                             </select>
-                            </div>
-                        </div>
-                        
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> Asignatura / Razon </label>
+                          <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="text" id="first-name" required="required"  name="asignatura" class="form-control col-md-7 col-xs-12">
+                          </div>
+                      </div>
+                      <div class="ln_solid"></div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Asignatura / Razon </label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
-                            </div>
-                        </div>
-                        <div class="ln_solid"></div>
-                        <div class="form-group">
-                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                <button type="button" class="btn btn-primary">Cancelar </button>
-						        <button class="btn btn-primary" type="reset">Limpiar</button>
+                          <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                            <button type="button" class="btn btn-primary">Cancelar </button>
+						                <button class="btn btn-primary" type="reset">Limpiar</button>
                             <button type="submit" class="btn btn-success">Enviar</button>
-                            </div>
+                          </div>
                         </div>
                     </form>
                   </div>
@@ -158,11 +178,12 @@
                     </div>
                     <div class="x_content">
                     <br />
-                    <form class="form-horizontal form-label-left input_mask">
+                    <form class="form-horizontal form-label-left input_mask" method="POST" action="/insertarInstaciaReserva">
+                    @csrf
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">  Numero Reserva  </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control">
+                            <select class="form-control" name="reserva" >
                               @foreach($reservas as $re)
                                 <option>{{$re->id}}</option>
                               @endforeach
@@ -172,7 +193,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Sala </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control">
+                            <select class="form-control" name="sala">
                             @foreach($salas as $sa)
                                 <option>{{$sa->nombre}}</option>
                               @endforeach
@@ -182,7 +203,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Dia </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control">
+                            <select class="form-control" name="dia">
                                 <option> Lunes </option>
                                 <option> Martes </option>
                                 <option> Miercoles </option>
@@ -197,7 +218,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Bloque Inicio </label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control">
+                            <select class="form-control" name="bloqueInicio">
                               @foreach($bloques as $bloque)
                                 <option>{{$bloque->id}}</option>
                               @endforeach
@@ -208,7 +229,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Bloque Final</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control">
+                            <select class="form-control" name="bloqueFinal">
                                @foreach($bloques as $bloque)
                                 <option>{{$bloque->id}}</option>
                               @endforeach
@@ -219,14 +240,14 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Fecha </label>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                             <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                  <input type="text"  name="reservation" id="reservation" class="form-control" value="01/01/2016 - 01/25/2016" />
+                                  <input type="text"  name="fecha" id="reservation" class="form-control" value="01/01/2016 - 01/25/2016" />
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                 <button type="button" class="btn btn-primary">Cancelar </button>
-						        <button class="btn btn-primary" type="reset">Limpiar</button>
+						                <button class="btn btn-primary" type="reset">Limpiar</button>
                             <button type="submit" class="btn btn-success">Enviar</button>
                             </div>
                         </div>

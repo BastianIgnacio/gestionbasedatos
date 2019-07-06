@@ -1,6 +1,28 @@
 @extends('layout')
 
 @section('content')
+
+@if($status == 'success')
+<div class="x_panel">
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Ingresado Correctamente </strong>
+      </div>
+  </div>
+@endif
+
+@if($status == 'successDelete')
+<div class="x_panel">
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Eliminado Correctamente </strong>
+      </div>
+  </div>
+@endif
+
+
 <div class="x_panel">
                   <div class="x_title">
                     <h2>Usuarios Registrados </h2>
@@ -30,18 +52,26 @@
                           <th>Apellido Paterno </th>
                           <th>Apellido Materno </th>
                           <th>Tipo </th>
+                          <th>Acciones </th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach($usuarios as $us)
                         <tr>
+                          <form method="POST" action="/eliminarUsuario">
+                          @csrf
                           <th scope="row">
-                          {{$us->rut}}
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" value="asdas">{{$us->rut}}</label>
                           </th>
+                          <input type="hidden" name="rutEliminar" value="{{$us->rut}}">
                           <td>  {{$us->nombre}}</td>
                           <td>  {{$us->apellidoPaterno}}</td>
                           <td>  {{$us->apellidoMaterno}}</td>
                           <td>  {{$us->tipo}}</td>
+                          <th>
+                            <button type="submit" class="btn btn-danger btn-xs">x</button>
+                          </th>
+                          </form>
                         </tr>
 
                         @endforeach
