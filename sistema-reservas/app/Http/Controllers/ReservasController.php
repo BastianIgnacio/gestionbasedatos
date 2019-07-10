@@ -124,7 +124,13 @@ class ReservasController extends Controller
             $error = 'Problema con eliminar ';
             return view('error', compact('error'));
         }
+    }
 
+    public function indexLogReservas()
+    {
+        $reservasEliminadas= \DB::table('logReserva')->get();
+        $instanciasEliminadas = \DB::table('logInstanciaReserva')->get();
 
+        return view('logReservas', compact(['reservasEliminadas','instanciasEliminadas']));
     }
 }

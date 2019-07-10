@@ -240,7 +240,7 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Fecha </label>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                             <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                  <input type="text"  name="fecha" id="reservation" class="form-control" value="01/01/2016 - 01/25/2016" />
+                                  <input type="text"  name="fecha" id="reservation" class="form-control" value="01/01/2019 - 01/25/2019" />
                             </div>
                         </div>
                         <div class="ln_solid"></div>

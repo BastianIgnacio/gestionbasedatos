@@ -24,12 +24,10 @@ Route::get('/login',function(){
     return view('login');
 });
 
-Route::get('/salas', function ()
-{
-    return view('salas');
-});
-
-
+Route::get('/salas', 'SalaController@index');
+Route::post('/insertarSala', 'SalaController@insertarSala');
+Route::post('/insertarInsumo', 'SalaController@insertarInsumo');
+Route::post('/eliminarSala', 'SalaController@eliminarSala');
 
 Route::get('/reservas', 'ReservasController@index');
 
@@ -40,8 +38,12 @@ Route::post('/usuarios', 'usuariosController@insert');
 Route::post('/reservas', 'ReservasController@insertReserva');
 
 Route::post('/insertarInstaciaReserva', 'ReservasController@insertInstanciaReserva');
+
 Route::post('/eliminarInstanciaReserva', 'ReservasController@eliminarInstanciaReserva');
 
 Route::post('/eliminarUsuario', 'usuariosController@eliminarUsuario');
 Route::post('/eliminarReserva', 'ReservasController@eliminarReserva');
+
+
+Route::get('/logReservas', 'ReservasController@indexLogReservas');
 
