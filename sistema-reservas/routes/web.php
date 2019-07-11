@@ -38,6 +38,7 @@ Route::post('/usuarios', 'usuariosController@insert');
 Route::post('/reservas', 'ReservasController@insertReserva');
 
 Route::post('/insertarInstaciaReserva', 'ReservasController@insertInstanciaReserva');
+Route::post('/aprobarReserva', 'ReservasController@aprobarReserva');
 
 Route::post('/eliminarInstanciaReserva', 'ReservasController@eliminarInstanciaReserva');
 
@@ -46,4 +47,5 @@ Route::post('/eliminarReserva', 'ReservasController@eliminarReserva');
 
 
 Route::get('/logReservas', 'ReservasController@indexLogReservas');
+
 

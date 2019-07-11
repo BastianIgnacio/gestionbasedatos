@@ -254,5 +254,48 @@
                     </form>
                   </div>
                 </div>
+
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Aprobar Reserva</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <form class="form-horizontal form-label-left input_mask" method="POST" action="/aprobarReserva">
+                    @csrf
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12"> Reserva </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <select class="form-control" name="refReserva">
+                        @foreach($reservas as $reserva)
+                          @if($reserva->estado == 'Pendiente')
+                            <option>{{$reserva->asignatura." || ID: ".$reserva->id}}</option>
+                          @endif
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                              <button type="button" class="btn btn-primary">Cancelar </button>
+                              <button type="submit" class="btn btn-success">Aprobar</button>
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+                  </div>
+                </div>
 @endsection
 

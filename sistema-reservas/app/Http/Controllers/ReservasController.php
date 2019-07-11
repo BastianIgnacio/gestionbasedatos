@@ -133,4 +133,23 @@ class ReservasController extends Controller
 
         return view('logReservas', compact(['reservasEliminadas','instanciasEliminadas']));
     }
+
+    public function aprobarReserva(Request $request)
+    {
+        $refReserva = $request->input('refReserva');
+        $array = explode(" ", $refReserva);
+        $reserva = last($array);
+
+        \DB::table('reserva')
+        ->where('id', $reserva)
+        ->update(['estado' => 'Aprobada']);
+
+        $reservas= \DB::table('reserva')->get();
+        $instanciasReservas = \DB::table('instanciaReserva')->get();
+        $usuarios = \DB::table('persona')->get();
+        $salas = \DB::table('sala')->get();
+        $bloques = \DB::table('bloque')->get();
+        return view('reservas', compact(['reservas','instanciasReservas','usuarios','salas','bloques']));
+
+    }
 }
