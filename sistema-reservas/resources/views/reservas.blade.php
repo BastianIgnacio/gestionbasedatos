@@ -3,7 +3,7 @@
 @section('content')
 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Reservas <small> en estado pendiente </small></h2>
+                    <h2>Reservas </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -229,7 +229,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12"> Bloque Final</label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select class="form-control" name="bloqueFinal">
+                            <select class="form-control" name="bloqueFinal" >
                                @foreach($bloques as $bloque)
                                 <option>{{$bloque->id}}</option>
                               @endforeach

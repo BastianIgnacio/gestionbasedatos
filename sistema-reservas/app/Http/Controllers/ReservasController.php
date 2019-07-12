@@ -72,10 +72,11 @@ class ReservasController extends Controller
             $bloques = \DB::table('bloque')->get();
             return view('reservas', compact(['reservas','instanciasReservas','usuarios','salas','bloques']));
 
-           } catch (Exception $e) {
-            return report($e);
+           } catch(\Illuminate\Database\QueryException $ex){ 
             
-        }
+            $error = 'Problema con insertar nueva Instancia Reserva';
+            return view('error', compact('error'));
+          }
     }
 
     public function eliminarReserva(Request $request)
